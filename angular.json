@@ -1,0 +1,137 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "SocialMediaApp-Client": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/social-media-app-client",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/images/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/assets/vendor/font-awesome/css/all.min.css",
+              "src/assets/vendor/bootstrap-icons/bootstrap-icons.css",
+              "src/assets/vendor/OverlayScrollbars-master/css/OverlayScrollbars.min.css",
+              "src/assets/vendor/tiny-slider/dist/tiny-slider.css",
+              "src/assets/vendor/choices.js/public/assets/styles/choices.min.css",
+              "src/assets/vendor/glightbox-master/dist/css/glightbox.min.css",
+              "src/assets/vendor/dropzone/dist/dropzone.css",
+              "src/assets/vendor/flatpickr/dist/flatpickr.css",
+              "src/assets/vendor/plyr/plyr.css",
+              "./node_modules/alertifyjs/build/css/alertify.min.css",
+              "./node_modules/alertifyjs/build/css/themes/bootstrap.min.css",
+              "src/assets/css/style.css",
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "src/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/assets/vendor/tiny-slider/dist/tiny-slider.js",
+              "src/assets/vendor/OverlayScrollbars-master/js/OverlayScrollbars.min.js",
+              "src/assets/vendor/choices.js/public/assets/scripts/choices.min.js",
+              "src/assets/vendor/glightbox-master/dist/js/glightbox.min.js",
+              "src/assets/vendor/flatpickr/dist/flatpickr.min.js",
+              "src/assets/vendor/plyr/plyr.js",
+              "src/assets/vendor/dropzone/dist/min/dropzone.min.js",
+              "src/assets/vendor/pswmeter/pswmeter.min.js",
+              "src/assets/js/functions.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "SocialMediaApp-Client:build:production"
+            },
+            "development": {
+              "browserTarget": "SocialMediaApp-Client:build:development",
+              "sslKey": "ssl/server.key",
+              "sslCert": "ssl/server.crt",
+              "ssl": true
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "SocialMediaApp-Client:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "SocialMediaApp-Client"
+}
